@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg:           #000000;
+  --surface:      rgba(18, 18, 18, 0.5);
+  --card:         rgba(20, 20, 20, 0.6);
+  --border:       rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(255, 255, 255, 0.3);
+  --accent:       #ffffff;
+  --accent-dim:   #d1d5db;
+  --accent-bright:#f9fafb;
+  --glow:         rgba(255, 255, 255, 0.06);
+  --glow-strong:  rgba(255, 255, 255, 0.12);
+  --text:         #ffffff;
+  --muted:        rgba(200, 200, 200, 0.6);
+  --muted2:       rgba(255, 255, 255, 0.35);
+  --danger:       #ef4444;
+  --warn:         #fbbf24;
+  --info:         #38bdf8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #000000;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+  overscroll-behavior: none;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120vw;
+  height: 80vh;
+  background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(30,30,30,0.55) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ONDO logo watermark in background */
+.bg-watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(85vw, 400px);
+  height: min(85vw, 400px);
+  background-image: url('/ondo-logo.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(1px) saturate(0);
+}
+
+.glass {
+  background: rgba(18, 18, 18, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-inner {
+  background: rgba(10, 10, 10, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.glow { box-shadow: 0 0 40px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.06); }
+.glow-strong { box-shadow: 0 0 60px rgba(255,255,255,0.1), inset 0 1px 0 rgba(255,255,255,0.1); }
+.glow-btn { box-shadow: 0 0 30px rgba(255,255,255,0.2), 0 4px 20px rgba(255,255,255,0.12); }
+
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+.safe-bottom { padding-bottom: max(20px, env(safe-area-inset-bottom)); }
+.no-select { user-select: none; -webkit-user-select: none; }
+
+@keyframes pulse-dot {
+  0%,100% { opacity: 1; box-shadow: 0 0 6px #fff; }
+  50%      { opacity: 0.5; box-shadow: 0 0 2px #fff; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fade-up { animation: fadeUp 0.45s cubic-bezier(0.22,1,0.36,1) forwards; }
+.fade-up-d1 { animation: fadeUp 0.45s 0.08s cubic-bezier(0.22,1,0.36,1) both; }
+.fade-up-d2 { animation: fadeUp 0.45s 0.16s cubic-bezier(0.22,1,0.36,1) both; }
+.fade-up-d3 { animation: fadeUp 0.45s 0.24s cubic-bezier(0.22,1,0.36,1) both; }
+.fade-up-d4 { animation: fadeUp 0.45s 0.32s cubic-bezier(0.22,1,0.36,1) both; }
