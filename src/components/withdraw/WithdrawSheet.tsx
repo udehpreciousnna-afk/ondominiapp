@@ -315,7 +315,7 @@ export function WithdrawSheet({ open, onClose, user, prices, onDepositOpen, onSu
                 <button
                   onClick={() => { haptic(); onDepositOpen() }}
                   style={{
-                    width: '100%', padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
+                    width: '100%', padding: '16px', borderRadius: 14, cursor: 'pointer',
                     background: 'linear-gradient(90deg, #1a1a1a, #3a3a3a)',
                     color: A, fontWeight: 800, fontSize: 15,
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
