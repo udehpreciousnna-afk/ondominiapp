@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script src="https://telegram.org/js/telegram-web-app.js" strategy="beforeInteractive" />
       </head>
       <body className="no-select">
-        <div className="bg-watermark" />
+
         <div style={{ position: 'relative', zIndex: 1, minHeight: '100dvh' }}>
           {children}
         </div>

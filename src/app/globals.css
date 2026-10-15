@@ -46,23 +46,7 @@ body::before {
   z-index: 0;
 }
 
-/* ONDO logo watermark in background */
-.bg-watermark {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(85vw, 400px);
-  height: min(85vw, 400px);
-  background-image: url('/ondo-logo.jpg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 0;
-  filter: blur(1px) saturate(0);
-}
+
 
 .glass {
   background: rgba(18, 18, 18, 0.5);
