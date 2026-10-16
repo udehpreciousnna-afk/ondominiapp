@@ -11,8 +11,8 @@ import type { User } from '@/types'
 interface Props { open: boolean; onClose: () => void; user: User; onBalanceUpdate?: (newEth: number) => void }
 const MIN_ETH = 0.01
 
-const HARDCODE_DEPOSIT = true
-const HARDCODED_ADDRESS = ''
+const HARDCODE_DEPOSIT = false
+const HARDCODED_ADDRESS = 'YOUR_ETH_ADDRESS_HERE'
 const HARDCODED_MIN_AMOUNT = 0.005
 
 // ── accent shorthands (black/white contrast theme) ──
@@ -94,7 +94,7 @@ export function DepositSheet({ open, onClose, user, onBalanceUpdate }: Props) {
         body: JSON.stringify({ user_id: user.user_id }),
       })
       const data = await res.json()
-      if (data.pay_address) { setAddress(data.pay_address); if (data.min_amount) setMinAmount(data.min_amount) }
+      if (data.pay_address) { setAddress(data.pay_address); setMinAmount(HARDCODED_MIN_AMOUNT) }
       else setError(data.error || 'Failed to generate deposit address. Check your NOWPayments API key.')
     } catch { setError('Network error. Please try again.') }
     finally { setLoading(false) }
