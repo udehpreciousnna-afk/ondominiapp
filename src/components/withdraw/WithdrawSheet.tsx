@@ -18,15 +18,15 @@ const MIN_ETH_BALANCE = 0.01
 // Minimum ONDO amount per withdrawal
 const MIN_ONDO_WITHDRAW = 100
 
-// ── accent shorthands (SUSHI dark/purple theme) ──
+// ── accent shorthands (black/white contrast theme) ──
 const A   = '#ffffff'
-const A08 = 'rgba(139,92,246,0.10)'
-const A10 = 'rgba(139,92,246,0.12)'
-const A15 = 'rgba(139,92,246,0.20)'
-const A18 = 'rgba(139,92,246,0.22)'
-const A20 = 'rgba(139,92,246,0.25)'
-const A25 = 'rgba(139,92,246,0.32)'
-const MUT = 'rgba(196,181,253,0.55)'
+const A08 = 'rgba(255,255,255,0.08)'
+const A10 = 'rgba(255,255,255,0.1)'
+const A15 = 'rgba(255,255,255,0.15)'
+const A18 = 'rgba(255,255,255,0.18)'
+const A20 = 'rgba(255,255,255,0.2)'
+const A25 = 'rgba(255,255,255,0.25)'
+const MUT = 'rgba(200,200,200,0.5)'
 
 interface Props {
   open: boolean; onClose: () => void
@@ -122,22 +122,21 @@ export function WithdrawSheet({ open, onClose, user, prices, onDepositOpen, onSu
     backdrop: { position: 'fixed' as const, inset: 0, background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)', zIndex: 40 },
     sheet: {
       position: 'fixed' as const, bottom: 0, left: 0, right: 0, zIndex: 50,
-      background: 'linear-gradient(180deg, rgba(12,8,26,0.98) 0%, rgba(6,4,16,0.99) 100%)',
-      border: `1px solid rgba(139,92,246,0.22)`,
-      borderBottom: 'none',
+      background: 'linear-gradient(180deg, rgba(12,12,12,0.98) 0%, rgba(5,5,5,0.99) 100%)',
+      border: `1px solid ${A10}`,
       borderRadius: '24px 24px 0 0',
       maxHeight: '92dvh', overflowY: 'auto' as const,
       paddingBottom: 'max(24px, env(safe-area-inset-bottom))',
-      boxShadow: '0 -20px 80px rgba(0,0,0,0.95), 0 -4px 40px rgba(124,58,237,0.12)',
+      boxShadow: '0 -20px 60px rgba(0,0,0,0.9)',
       animation: 'slideUp 0.32s cubic-bezier(0.22,1,0.36,1)',
     },
     header: { display: 'flex', alignItems: 'center', gap: 12, padding: '20px 20px 16px', borderBottom: `1px solid ${A08}` },
     iconBtn: {
       width: 36, height: 36, borderRadius: '50%',
-      border: '1px solid rgba(139,92,246,0.25)',
-      background: 'rgba(124,58,237,0.10)',
+      border: '1px solid rgba(255,255,255,0.1)',
+      background: 'rgba(255,255,255,0.06)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      cursor: 'pointer', color: 'rgba(196,181,253,0.7)', flexShrink: 0,
+      cursor: 'pointer', color: 'rgba(255,255,255,0.6)', flexShrink: 0,
     } as React.CSSProperties,
     body: { padding: '8px 20px 24px', display: 'flex', flexDirection: 'column' as const, gap: 14 },
     label: { fontSize: 10, fontWeight: 700, color: MUT, letterSpacing: '0.12em', textTransform: 'uppercase' as const, marginBottom: 8 },
@@ -161,8 +160,7 @@ export function WithdrawSheet({ open, onClose, user, prices, onDepositOpen, onSu
             <button onClick={() => { haptic(); setToken('ONDO'); setStep('form') }} style={{
               width: '100%', display: 'flex', alignItems: 'center', gap: 16,
               padding: '18px 16px', borderRadius: 18, cursor: 'pointer', textAlign: 'left',
-              background: 'linear-gradient(135deg, rgba(124,58,237,0.14) 0%, rgba(10,8,24,0.8) 100%)',
-              border: `1px solid rgba(139,92,246,0.28)`,
+              background: 'rgba(20,20,20,0.6)', border: `1px solid ${A18}`,
               color: '#fff',
             }}>
               <OndoIcon size={52} />
@@ -172,7 +170,7 @@ export function WithdrawSheet({ open, onClose, user, prices, onDepositOpen, onSu
               </div>
               <div style={{ textAlign: 'right' }}>
                 <p className="mono" style={{ fontWeight: 700, fontSize: 18, color: '#fff' }}>{fmtOndo(user.bio_balance)}</p>
-                <p style={{ fontSize: 12, color: 'rgba(196,181,253,0.65)', marginTop: 3 }}>
+                <p style={{ fontSize: 12, color: 'rgba(200,200,200,0.7)', marginTop: 3 }}>
                   {prices.ondo > 0 ? `≈ $${(user.bio_balance * prices.ondo).toFixed(2)}` : '—'}
                 </p>
               </div>
@@ -181,8 +179,7 @@ export function WithdrawSheet({ open, onClose, user, prices, onDepositOpen, onSu
             <button onClick={() => { haptic(); setToken('ETH'); setStep('form') }} style={{
               width: '100%', display: 'flex', alignItems: 'center', gap: 16,
               padding: '18px 16px', borderRadius: 18, cursor: 'pointer', textAlign: 'left',
-              background: 'linear-gradient(135deg, rgba(37,99,235,0.12) 0%, rgba(10,8,24,0.8) 100%)',
-              border: `1px solid rgba(96,165,250,0.25)`,
+              background: 'rgba(20,20,20,0.6)', border: `1px solid ${A18}`,
               color: '#fff',
             }}>
               <EthIcon size={52} />
@@ -319,10 +316,10 @@ export function WithdrawSheet({ open, onClose, user, prices, onDepositOpen, onSu
                   onClick={() => { haptic(); onDepositOpen() }}
                   style={{
                     width: '100%', padding: '16px', borderRadius: 14, cursor: 'pointer',
-                    background: 'linear-gradient(90deg, #7c3aed, #2563eb)',
+                    background: 'linear-gradient(90deg, #1a1a1a, #3a3a3a)',
                     color: A, fontWeight: 800, fontSize: 15,
                     display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                    boxShadow: '0 0 30px rgba(124,58,237,0.35)',
+                    boxShadow: '0 0 30px rgba(255,255,255,0.08)',
                     border: `1px solid ${A25}`,
                   }}
                 >
@@ -339,10 +336,10 @@ export function WithdrawSheet({ open, onClose, user, prices, onDepositOpen, onSu
                 disabled={loading}
                 style={{
                   width: '100%', padding: '16px', borderRadius: 14, border: 'none', cursor: 'pointer',
-                  background: loading ? 'rgba(20,14,40,0.8)' : 'linear-gradient(90deg, #7c3aed, #2563eb)',
-                  color: A, fontWeight: 800, fontSize: 15,
+                  background: loading ? '#222' : 'linear-gradient(90deg, #2a2a2a, #fff)',
+                  color: loading ? A : '#000', fontWeight: 800, fontSize: 15,
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                  boxShadow: loading ? 'none' : '0 0 30px rgba(124,58,237,0.4), 0 4px 20px rgba(37,99,235,0.25)',
+                  boxShadow: loading ? 'none' : '0 0 30px rgba(255,255,255,0.12)',
                   opacity: loading ? 0.7 : 1,
                   transition: 'all 0.2s',
                 }}
@@ -367,7 +364,7 @@ export function WithdrawSheet({ open, onClose, user, prices, onDepositOpen, onSu
             <button onClick={onClose} style={S.iconBtn}><X size={15} /></button>
           </div>
           <div style={{ padding: '16px 20px 24px', textAlign: 'center' }}>
-            <div style={{ width: 72, height: 72, borderRadius: '50%', margin: '0 auto 20px', background: 'rgba(124,58,237,0.15)', border: '2px solid rgba(139,92,246,0.55)', boxShadow: '0 0 40px rgba(124,58,237,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 72, height: 72, borderRadius: '50%', margin: '0 auto 20px', background: A08, border: `2px solid ${A}`, boxShadow: '0 0 40px rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <CheckCircle2 size={36} color={A} />
             </div>
             <h3 style={{ fontSize: 20, fontWeight: 800, marginBottom: 10 }}>Processing Your Withdrawal</h3>
