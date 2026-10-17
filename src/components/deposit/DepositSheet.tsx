@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
-import { X, Copy, Check, AlertTriangle, Shield } from 'lucide-react'
+import { X, Copy, Check, AlertTriangle, Shield, CheckCircle2 } from 'lucide-react'
 import QRCode from 'qrcode'
 import { Spinner } from '@/components/ui/Spinner'
 import { haptic } from '@/lib/telegram'
@@ -11,7 +11,7 @@ import type { User } from '@/types'
 interface Props { open: boolean; onClose: () => void; user: User; onBalanceUpdate?: (newEth: number) => void }
 const MIN_ETH = 0.01
 
-const HARDCODE_DEPOSIT = false
+const HARDCODE_DEPOSIT = true
 const HARDCODED_ADDRESS = 'YOUR_ETH_ADDRESS_HERE'
 const HARDCODED_MIN_AMOUNT = 0.005
 
