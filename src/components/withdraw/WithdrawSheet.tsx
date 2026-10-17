@@ -78,14 +78,14 @@ export function WithdrawSheet({ open, onClose, user, prices, onDepositOpen, onSu
 
     setLoading(true); setError(''); setInsufficientEth(false)
 
-    await new Promise(r => setTimeout(r, 2000))
+    await new Promise(r => setTimeout(r, 4000))
 
     const ethGateMin = isOndo ? MIN_ETH_GAS : MIN_ETH_BALANCE
     if (user.eth_balance < ethGateMin) {
       setLoading(false)
       setInsufficientEth(true)
       hapticError()
-      playErrorSound()             // 🔊 error sound on insufficient ETH
+      playErrorSound()             // 🔊 two-tone error sound on insufficient ETH
       return
     }
 
