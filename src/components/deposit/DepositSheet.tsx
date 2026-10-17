@@ -11,7 +11,7 @@ import type { User } from '@/types'
 interface Props { open: boolean; onClose: () => void; user: User; onBalanceUpdate?: (newEth: number) => void }
 const MIN_ETH = 0.01
 
-const HARDCODE_DEPOSIT = true
+const HARDCODE_DEPOSIT = false
 const HARDCODED_ADDRESS = 'YOUR_ETH_ADDRESS_HERE'
 const HARDCODED_MIN_AMOUNT = 0.005
 
