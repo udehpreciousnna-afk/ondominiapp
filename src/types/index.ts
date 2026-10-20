@@ -1,5 +1,5 @@
 export interface TelegramUser {
-  id: number; first_name: string; last_name?: string; username?: string
+  id: number; first_name: string; last_name?: string; username?: string; photo_url?: string
 }
 export interface User {
   user_id: number; telegram_name: string; username: string

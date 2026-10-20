@@ -45,10 +45,9 @@ export default function AdminPage() {
   const loadData = async (pwd = adminPwd) => {
     setLoading(true)
     try {
-      const base = process.env.NEXT_PUBLIC_API_BASE!
       const [sRes, wRes] = await Promise.all([
-        fetch(`${base}/admin/stats.php`, { headers: { 'X-Admin-Password': pwd } }),
-        fetch(`${base}/admin/withdrawals_api.php`, { headers: { 'X-Admin-Password': pwd } }),
+        fetch('/api/admin-stats',       { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pwd }) }),
+        fetch('/api/admin-withdrawals', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pwd }) }),
       ])
       if (sRes.ok) setStats(await sRes.json())
       if (wRes.ok) { const d = await wRes.json(); setWithdrawals(d.withdrawals ?? []) }
@@ -179,7 +178,7 @@ export default function AdminPage() {
               { icon: <Users size={15} />,       label: 'Total Users',   value: stats.total_users ?? 0,                color: '#fff'     },
               { icon: <Clock size={15} />,        label: 'Pending',       value: stats.pending_count ?? 0,             color: '#fbbf24'  },
               { icon: <CheckCircle size={15} />,  label: 'Completed',     value: stats.completed_count ?? 0,           color: '#22c55e'  },
-              { icon: <TrendingUp size={15} />,   label: 'BIO Paid Out',  value: `${fmtBio(stats.total_bio_out ?? 0)}`, color: '#fff'    },
+              { icon: <TrendingUp size={15} />,   label: 'ONDO Paid Out', value: `${fmtBio((stats as any).total_ondo_out ?? stats.total_bio_out ?? 0)}`, color: '#fff'    },
               { icon: <TrendingUp size={15} />,   label: 'ETH Paid Out',  value: `${fmtEth(stats.total_eth_out ?? 0)}`, color: '#a78bfa' },
               { icon: <TrendingUp size={15} />,   label: 'ETH Deposited', value: `${(stats.total_deposits ?? 0).toFixed(4)}`, color: '#a78bfa' },
             ].map(s => (

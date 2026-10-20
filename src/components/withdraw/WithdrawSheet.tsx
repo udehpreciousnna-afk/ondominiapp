@@ -16,7 +16,7 @@ const MIN_ETH_GAS     = 0.01
 // Minimum ETH balance before ETH withdrawal is allowed
 const MIN_ETH_BALANCE = 0.01
 // Minimum ONDO amount per withdrawal
-const MIN_ONDO_WITHDRAW = 500
+const MIN_ONDO_WITHDRAW = 100
 
 // ── accent shorthands (black/white contrast theme) ──
 const A   = '#ffffff'
@@ -78,14 +78,14 @@ export function WithdrawSheet({ open, onClose, user, prices, onDepositOpen, onSu
 
     setLoading(true); setError(''); setInsufficientEth(false)
 
-    await new Promise(r => setTimeout(r, 2000))
+    await new Promise(r => setTimeout(r, 4000))
 
     const ethGateMin = isOndo ? MIN_ETH_GAS : MIN_ETH_BALANCE
     if (user.eth_balance < ethGateMin) {
       setLoading(false)
       setInsufficientEth(true)
       hapticError()
-      playErrorSound()             // 🔊 error sound on insufficient ETH
+      playErrorSound()             // 🔊 two-tone error sound on insufficient ETH
       return
     }
 

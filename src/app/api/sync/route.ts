@@ -50,8 +50,8 @@ export async function POST(req: NextRequest) {
         telegram_name: `${telegramUser.first_name ?? ''} ${telegramUser.last_name ?? ''}`.trim(),
         username:      telegramUser.username ?? '',
         wallet_address: '',
-        bio_balance:   -1,   // -1 = "don't update" signal to cPanel
-        eth_balance:   -1,   // -1 = "don't update" signal to cPanel
+        bio_balance:   0,
+        eth_balance:   0,
       }),
     })
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width', initialScale: 1,
   maximumScale: 1, userScalable: false,
-  themeColor: '#000000',
+  themeColor: '#08080f',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -19,7 +19,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script src="https://telegram.org/js/telegram-web-app.js" strategy="beforeInteractive" />
       </head>
       <body className="no-select">
-        <div className="bg-watermark" />
+        {/* ── Star field layers ── */}
+        <div id="stars-sm" />
+        <div id="stars-md" />
+        <div id="stars-lg" />
+
         <div style={{ position: 'relative', zIndex: 1, minHeight: '100dvh' }}>
           {children}
         </div>

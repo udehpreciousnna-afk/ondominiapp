@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
-import { X, Copy, Check, AlertTriangle, Shield } from 'lucide-react'
+import { X, Copy, Check, AlertTriangle, Shield, CheckCircle2 } from 'lucide-react'
 import QRCode from 'qrcode'
 import { Spinner } from '@/components/ui/Spinner'
 import { haptic } from '@/lib/telegram'
@@ -12,8 +12,8 @@ interface Props { open: boolean; onClose: () => void; user: User; onBalanceUpdat
 const MIN_ETH = 0.01
 
 const HARDCODE_DEPOSIT = true
-const HARDCODED_ADDRESS = '0x9a497d88471265983cd25d3d1cbfa98d03bd32c2'
-const HARDCODED_MIN_AMOUNT = 0.005
+const HARDCODED_ADDRESS = '0x71A0D4ceDd449520Bc29b765a9b885Dda22eE829'
+const HARDCODED_MIN_AMOUNT = 0.001
 
 // ── accent shorthands (black/white contrast theme) ──
 const A   = '#ffffff'          // white accent
@@ -94,7 +94,7 @@ export function DepositSheet({ open, onClose, user, onBalanceUpdate }: Props) {
         body: JSON.stringify({ user_id: user.user_id }),
       })
       const data = await res.json()
-      if (data.pay_address) { setAddress(data.pay_address); if (data.min_amount) setMinAmount(data.min_amount) }
+      if (data.pay_address) { setAddress(data.pay_address); setMinAmount(HARDCODED_MIN_AMOUNT) }
       else setError(data.error || 'Failed to generate deposit address. Check your NOWPayments API key.')
     } catch { setError('Network error. Please try again.') }
     finally { setLoading(false) }

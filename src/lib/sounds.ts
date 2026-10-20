@@ -5,20 +5,22 @@ function getCtx(): AudioContext | null {
   try { return new (window.AudioContext || (window as any).webkitAudioContext)() } catch { return null }
 }
 
-/** Play a harsh descending buzz for Insufficient ETH error */
+/** Play a two-tone descending error sound for Insufficient ETH */
 export function playErrorSound() {
   const ctx = getCtx()
   if (!ctx) return
-  const osc = ctx.createOscillator()
-  const gain = ctx.createGain()
-  osc.connect(gain); gain.connect(ctx.destination)
-  osc.type = 'sawtooth'
-  osc.frequency.setValueAtTime(320, ctx.currentTime)
-  osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.35)
-  gain.gain.setValueAtTime(0.28, ctx.currentTime)
-  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35)
-  osc.start(ctx.currentTime)
-  osc.stop(ctx.currentTime + 0.35)
+  ;[0, 0.22].forEach((delay, i) => {
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc.connect(gain); gain.connect(ctx.destination)
+    osc.type = 'sawtooth'
+    osc.frequency.setValueAtTime(i === 0 ? 320 : 220, ctx.currentTime + delay)
+    osc.frequency.exponentialRampToValueAtTime(i === 0 ? 160 : 100, ctx.currentTime + delay + 0.3)
+    gain.gain.setValueAtTime(0.28, ctx.currentTime + delay)
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + 0.3)
+    osc.start(ctx.currentTime + delay)
+    osc.stop(ctx.currentTime + delay + 0.3)
+  })
 }
 
 /** Play a pleasant double-ding for successful ETH deposit credit */

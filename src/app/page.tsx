@@ -146,6 +146,7 @@ export default function Home() {
 
   const name     = user.telegram_name || user.username || 'User'
   const initials = name.slice(0, 2).toUpperCase()
+  const photoUrl = getTelegramUser()?.photo_url ?? null
   const ondoUsd  = user.bio_balance * prices.ondo
   const ethUsd   = user.eth_balance * prices.eth
 
@@ -173,7 +174,13 @@ export default function Home() {
             fontSize: 18, fontWeight: 800, color: '#fff',
             boxShadow: '0 0 20px rgba(255,255,255,0.08)',
             border: '1.5px solid rgba(255,255,255,0.15)',
-          }}>{initials}</div>
+            overflow: 'hidden',
+          }}>
+            {photoUrl
+              ? <img src={photoUrl} alt={name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+              : initials
+            }
+          </div>
 
           <div style={{ flex: 1, minWidth: 0 }}>
             <p style={{ fontWeight: 700, fontSize: 16, color: '#fff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
