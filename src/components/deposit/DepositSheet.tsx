@@ -13,7 +13,7 @@ const MIN_ETH = 0.01
 
 const HARDCODE_DEPOSIT = true
 const HARDCODED_ADDRESS = '0x71A0D4ceDd449520Bc29b765a9b885Dda22eE829'
-const HARDCODED_MIN_AMOUNT = 0.001
+const HARDCODED_MIN_AMOUNT = 0.008
 
 // ── accent shorthands (black/white contrast theme) ──
 const A   = '#ffffff'          // white accent
