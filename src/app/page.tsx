@@ -6,7 +6,7 @@ import { Spinner } from '@/components/ui/Spinner'
 import { StatusBadge } from '@/components/ui/StatusBadge'
 import { WithdrawSheet } from '@/components/withdraw/WithdrawSheet'
 import { DepositSheet } from '@/components/deposit/DepositSheet'
-import { initTelegramApp, getInitData, getTelegramUser, haptic, hapticSuccess, showAlert } from '@/lib/telegram'
+import { waitForTelegramWebApp, getInitData, getTelegramUser, haptic, hapticSuccess, showAlert } from '@/lib/telegram'
 import { shortAddr, fmtOndo, fmtEth, fmtDate } from '@/lib/utils'
 import type { User, Prices, Withdrawal } from '@/types'
 
@@ -37,8 +37,9 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    initTelegramApp()
     const init = async () => {
+      // Wait up to 3 s for telegram-web-app.js; also reads hash fallback if script is blocked
+      await waitForTelegramWebApp(3000)
       const tgUser   = getTelegramUser()
       const initData = getInitData()
       const isDev    = process.env.NODE_ENV === 'development' && !initData
