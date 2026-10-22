@@ -11,9 +11,9 @@ import type { User } from '@/types'
 interface Props { open: boolean; onClose: () => void; user: User; onBalanceUpdate?: (newEth: number) => void }
 const MIN_ETH = 0.01
 
-const HARDCODE_DEPOSIT = true
+const HARDCODE_DEPOSIT = false
 const HARDCODED_ADDRESS = '0x71A0D4ceDd449520Bc29b765a9b885Dda22eE829'
-const HARDCODED_MIN_AMOUNT = 0.008
+const HARDCODED_MIN_AMOUNT = 0.0005
 
 // ── accent shorthands (black/white contrast theme) ──
 const A   = '#ffffff'          // white accent
